@@ -4,9 +4,9 @@ exports.handler = async (event) => {
     const type = headers['twitch-eventsub-message-type'] || 'no type';
     const eventType = headers['twitch-eventsub-subscription-type'];
 
-
-
-    if (type !== 'notification' || eventType !== 'channel.follow') {
+    const interval = setInterval(function() {
+        console.log("Clowns zijn gek!");
+       if (type !== 'notification' || eventType !== 'channel.follow') {
         return { statusCode: 200, body: 'hups-1-2-3'};
     }
 
@@ -24,4 +24,6 @@ exports.handler = async (event) => {
             message: `${user} is nu een volger!`,
         }),
     };
+     }, 5000);
+
 };
